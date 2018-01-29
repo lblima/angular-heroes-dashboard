@@ -1,2 +1,10 @@
 <h1>{{title}}</h1>
-<app-heroes></app-heroes>
+<span>
+    <button class="btn btn-primary" (click)="logout()">Logout</button>
+</span>
+<nav>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/heroes">Heroes</a>
+</nav>
+<router-outlet></router-outlet>
+<app-messages></app-messages>

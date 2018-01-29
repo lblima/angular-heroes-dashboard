@@ -3,11 +3,11 @@ import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 
 @Component({
-  selector: 'app-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class HeroesComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
   heroes: Hero[] = [];
   statusMessage: string = 'Loading...';
@@ -17,9 +17,9 @@ export class HeroesComponent implements OnInit {
   ngOnInit() {
     this.getHeroes();
   }
-  
+
   getHeroes(): void {
     this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes, (error) => this.statusMessage = 'Ops...');
+      .subscribe(heroes => this.heroes = heroes.slice(0, 5), (error) => this.statusMessage = 'Ops...');
   }
 }
