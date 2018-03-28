@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthenticationService } from '../authentication.service';
@@ -18,12 +18,16 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute) { }
 
+  @Output() loginClicked = new EventEmitter();
+
   ngOnInit() {
     this.authenticationService.logout();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
   }
 
   login() {
+    this.loginClicked.emit();
+    
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(data => {
         this.router.navigate([this.returnUrl]);
